@@ -6,3 +6,5 @@ Xissssss	M   F
 Yyyyyyyy	F 	F 	M
 Zeeeeeee	M 	M
 Wwwwwwww	F 	F
+SandJuni	F 	M
+JuniSand	M	F

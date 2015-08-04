@@ -40,9 +40,9 @@ local function removePerson(people, index)
 	table.remove(people, index)
 	
 	for _, person1 in ipairs(people) do
-		for i, possibleRoomie in ipairs(person1:getPossibleRoommates()) do
+		for k, possibleRoomie in pairs(person1:getPossibleRoommates()) do
 			if removed == possibleRoomie then
-				table.remove(person1:getPossibleRoommates(), i)
+				table.remove(person1:getPossibleRoommates(), k)
 			end
 		end
 	end
@@ -51,49 +51,45 @@ end
 
 --- Encontra o indice de uma pessoa no array de pessoas
 local function findIndex(people, person1)
-	for i, v in ipairs(people) do
+	for k, v in pairs(people) do
 		if v == person1 then
-			return i
+			return k
 		end
 	end
 	return -1
 end
 
---- Clona uma tabela levando em conta metatables e tudo o mais
-local function clone(obj, seen)
-  	if type(obj) ~= 'table' then
-  		return obj
-  	end
-  	if seen and seen[obj] then
-  		return seen[obj]
-  	end
-  	local s = seen or {}
-  	local res = setmetatable({}, getmetatable(obj))
-  	s[obj] = res
-  	for k, v in pairs(obj) do res[clone(k, s)] = clone(v, s) end
-  	return res
+--- Copia uma tabela
+function shallowCopy(origin)
+    local copy
+    if type(origin) == 'table' then
+        copy = {}
+        for k, v in pairs(origin) do
+            copy[k] = v
+        end
+    else
+        copy = origin
+    end
+    return copy
 end
 
 --- Faz os pares de pessoas, atualizando o array de pessoas que ainda nao tem quarto
 local function assignRooms(people)
 	local rooms = {}
 
-	for i, value in ipairs(clone(people, {})) do
-		if #(value:getPossibleRoommates()) > 0 then
-			for j, roomie in ipairs(value:getPossibleRoommates()) do
-				if not (value:getIsPaired() or roomie:getIsPaired()) then
-					print("Um")
+	for _, value in ipairs(people) do
+		if 	#(value:getPossibleRoommates()) > 0 then
+			for _, roomie in pairs(value:getPossibleRoommates()) do
+				if not value:getIsPaired() and not roomie:getIsPaired() then
 					local p1
-					p1, people = removePerson(people, i)
+					p1, people = removePerson(people, findIndex(people, value))
 					_, people = removePerson(people, findIndex(people, roomie))
 					table.insert(rooms, {p1, roomie})
 					value:setIsPaired(true)
 					roomie:setIsPaired(true)
 				elseif value:getIsPaired() then
-					print("Dois")
-					_, people = removePerson(people, i)
+					_, people = removePerson(people, findIndex(people, value))
 				elseif roomie:getIsPaired() then
-					print("Tres")
 					_, people = removePerson(people, findIndex(people, roomie))
 				end
 			end
