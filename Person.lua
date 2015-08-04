@@ -1,16 +1,12 @@
 --- Microprojetinho RoomManager em Lua
 --- Modulo Person.lua
 --- @author Bernardo Alkmim
---- @module person
-local person = {}
-
---- Tabela da classe
+--- @module Person
 local Person = {}
 
 --- Construtor
-function person.new(personName, personGender, personSexuality)
-	local self = {}
-	setmetatable(self, { __index = Person })
+function Person:new(personName, personGender, personSexuality)
+	setmetatable(self, { __index = self })
 
 	self:setName(personName)
 	self:setGender(personGender)
@@ -123,4 +119,4 @@ function Person:getIsPaired()
 	return self.isPaired
 end
 
-return person
+return Person
