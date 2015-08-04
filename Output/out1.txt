@@ -1,0 +1,15 @@
+People assigned (4):
+Room 1:
+Zeeeeeee	M	M
+Xissssss	M	F
+Room 2:
+Yyyyyyyy	F	FM
+Beltrana	F	M
+People unassigned (6):
+Wwwwwwww	F	F
+Fulanooo	M	MF
+Bernardo	M	M
+Ciclanaa 	F	F
+Xissssss	M	F
+Beltrana	F	M
+People total: 10
