@@ -74,10 +74,11 @@ function shallowCopy(origin)
 end
 
 --- Faz os pares de pessoas, atualizando o array de pessoas que ainda nao tem quarto
+--- Nem de longe um algoritmo otimo
 local function assignRooms(people)
 	local rooms = {}
 
-	for _, value in ipairs(people) do
+	for _, value in pairs(people) do
 		if 	#(value:getPossibleRoommates()) > 0 then
 			for _, roomie in pairs(value:getPossibleRoommates()) do
 				if not value:getIsPaired() and not roomie:getIsPaired() then

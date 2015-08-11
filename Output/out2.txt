@@ -1,0 +1,21 @@
+People assigned (10):
+Room 1:
+Yyyyyyyy	F	FM
+AlbAlbAb	F	M
+Room 2:
+Wwwwwwww	F	F
+Beltrana	F	M
+Room 3:
+Zeeeeeee	M	M
+BlaBlaBl	M	F
+Room 4:
+SandJuni	F	M
+Ciclanaa 	F	F
+Room 5:
+JuniSand	M	F
+Bernardo	M	M
+People unassigned (3):
+Fulanooo	M	MF
+Reyneimi	M	F
+Xissssss	M	F
+People total: 13
