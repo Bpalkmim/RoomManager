@@ -12,8 +12,8 @@ local function validate(people)
 		return person1:getName() < person2:getName()
 	end)
 
-	for i, _ in ipairs(people) do
-		if i + 1 <= #people and people[i]:getName() == people[i + 1]:getName() then
+	for i in 1, (#people - 1) do
+		if people[i]:getName() == people[i + 1]:getName() then
 			return false
 		end
 	end
@@ -75,6 +75,7 @@ end
 
 --- Faz os pares de pessoas, atualizando o array de pessoas que ainda nao tem quarto
 --- Nem de longe um algoritmo otimo
+--- TODO APARENTEMENTE BUGADO TAMBEM :C
 local function assignRooms(people)
 	local rooms = {}
 
